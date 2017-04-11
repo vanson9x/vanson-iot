@@ -32,7 +32,7 @@ class Status extends \yii\db\ActiveRecord
     {
         return [
             [['turn_on', 'id_product'], 'integer'],
-            [['id_product'], 'required'],
+            [['id_product'],'required','message'=>'Chưa chọn thiết bị nào'],
             // [['created_at', 'updated_at'], 'safe'],
             [['id_product'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['id_product' => 'id']],
         ];
@@ -46,7 +46,7 @@ class Status extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'turn_on' => 'Bật thiết bị',
-            'id_product' => 'Mã thiết bị',
+            'id_product' => 'Tên thiết bị',
             'created_at' => 'Ngày tạo',
             'updated_at' => 'Ngày cập nhật',
         ];

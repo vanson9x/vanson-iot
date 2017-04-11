@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use yii\grid\DataColumn;
+use backend\models\Product;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\StatusSearch */
@@ -41,8 +43,23 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'turn_on',
-            'id_product',
+
+            [
+                'class' => DataColumn::className(), // this line is optional
+                'attribute' => 'turn_on',
+                'label' => 'Trạng thái',
+                'value' => function($model){return $model->turn_on?'Bật':'Tắt';},
+            ],
+
+            [
+                'class' => DataColumn::className(), // this line is optional
+                'attribute' => 'id_product',
+                'label' => 'Tên thiết bị',
+                'value' => function($model){
+                    return Product::find()->where($model->id_product)->one()->name;
+                },
+            ],
+
             'created_at',
             'updated_at',
 

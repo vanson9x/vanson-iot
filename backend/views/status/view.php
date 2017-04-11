@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use backend\models\Product;
+use yii\grid\DataColumn;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Status */
@@ -18,8 +20,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'turn_on',
-            'id_product',
+            [
+                'class' => DataColumn::className(), // this line is optional
+                'attribute' => 'turn_on',
+                'label' => 'Trạng thái',
+                'value' => function($model){return $model->turn_on?'Bật':'Tắt';},
+            ],
+
+            [
+                'class' => DataColumn::className(), // this line is optional
+                'attribute' => 'id_product',
+                'label' => 'Tên thiết bị',
+                'value' => function($model){
+                    return Product::find()->where($model->id_product)->one()->name;
+                },
+            ],
             'created_at',
             'updated_at',
         ],

@@ -40,12 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            ['attribute'=>'begin','format'=>['date', 'php:d-m-Y h:i:s'],'label'=>'Bắt đầu lúc'],
+            'begin',
             'count',
             'id_product',
-            ['attribute'=>'created_at','format'=>['date', 'php:d-m-Y'],'label'=>'Ngày tạo'],
-            ['attribute'=>'updated_at','format'=>['date', 'php:d-m-Y'],'label'=>'Ngày cập nhật'],
-
+            'created_at',
+            'updated_at',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

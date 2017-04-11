@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\dropDownList;
+use kartik\datetime\DateTimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Alarm */
@@ -13,7 +14,13 @@ use yii\widgets\dropDownList;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'begin')->textInput() ?> 
+    <?= $form->field($model, 'begin')->widget(
+    	DateTimePicker::classname(), [
+			'options' => ['placeholder' => 'Enter event time ...'],
+			'pluginOptions' => [
+				'autoclose' => true
+			]
+		]) ?> 
 
     <?= $form->field($model, 'count')->textInput() ?>
 

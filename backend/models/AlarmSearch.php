@@ -19,7 +19,7 @@ class AlarmSearch extends Alarm
     {
         return [
             [['id', 'count', 'id_product'], 'integer'],
-            [['begin', 'created_at', 'updated_at'], 'safe'],
+            [['begin'], 'safe'],
         ];
     }
 

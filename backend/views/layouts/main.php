@@ -64,7 +64,7 @@ AppAsset::register($this);
                     <ul class="nav child_menu">
                       <li><a href="<?php echo Yii::$app->homeUrl.'product/index';?>">Quản lý thiết bị</a></li>
                       <li><a href="<?php echo Yii::$app->homeUrl.'status/index';?>">Quản lý trạng thái thiết bị</a></li>
-                      <li><a href="#">Form Wizard</a></li>
+                      <li><a href="<?php echo Yii::$app->homeUrl.'alarm/index';?>">Quản lý hẹn giờ thiết bị</a></li>
                       <li><a href="#">Form Upload</a></li>
                       <li><a href="#">Form Buttons</a></li>
                     </ul>

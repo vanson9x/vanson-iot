@@ -32,7 +32,7 @@ class Alarm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['begin', 'count', 'id_product'], 'required'],
+            [['begin', 'count', 'id_product'], 'required', 'message'=>'Không được bỏ trống'],
             ['begin', 'safe'],
             [['count', 'id_product'], 'integer'],
             [['id_product'], 'exist', 'skipOnError' => true, 'targetClass' => Product::className(), 'targetAttribute' => ['id_product' => 'id']],

@@ -61,4 +61,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::end() ?>
 </div>
 
-
+<?php
+    $script = <<< JS
+    $('.navbar-nav>li:first').click(function(){
+     $(this).attr('class',$(this).attr('class')==""?"open":"");
+    });
+JS;
+    $this->registerJs($script); 
+?>

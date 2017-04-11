@@ -38,22 +38,23 @@ $this->params['breadcrumbs'][] = $this->title;
         echo '<div id="modalContent"></div>';
     Modal::end(); ?>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'id',
-            'name',
-            'power',
-            'time_use',
-            ['attribute'=>'created_at','format'=>['date', 'php:d-m-Y'],'label'=>'Ngày tạo'],
-            ['attribute'=>'updated_at','format'=>['date', 'php:d-m-Y'],'label'=>'Ngày cập nhật'],
-            ['class' => 'yii\grid\ActionColumn',]
-        ],
+    <?php Pjax::begin(); ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                'id',
+                'name',
+                'power',
+                'time_use',
+                ['attribute'=>'created_at','format'=>['date', 'php:d-m-Y'],'label'=>'Ngày tạo'],
+                ['attribute'=>'updated_at','format'=>['date', 'php:d-m-Y'],'label'=>'Ngày cập nhật'],
+                ['class' => 'yii\grid\ActionColumn',]
+            ],
 
-    ]); ?>
-
+        ]); ?>
+    <?php Pjax::end(); ?>
 </div>
 
 <?php

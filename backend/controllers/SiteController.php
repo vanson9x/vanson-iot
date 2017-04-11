@@ -60,6 +60,11 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            $this->layout='login';
+            $model = new LoginForm();
+            return $this->render('login',['model'=>$model]);
+        }
         return $this->render('index');
     }
 
@@ -70,13 +75,25 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout='login';
+
         if (!Yii::$app->user->isGuest) {
+            Yii::$app->user->logout();
             return $this->goHome();
         }
 
         $model = new LoginForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            if (Yii::$app->user->identity->username == 'admin') {
+                return $this->goBack();
+            }
+            else{
+                echo '<script>alert("Không có quyền truy cập Backend");</script>';
+                return $this->render('login', [
+                'model' => $model,
+                ]);
+            } 
         } else {
             return $this->render('login', [
                 'model' => $model,
@@ -92,7 +109,6 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
-
         return $this->goHome();
     }
 }

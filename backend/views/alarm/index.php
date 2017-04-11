@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use backend\models\Product;
+use yii\grid\DataColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\AlarmSearch */
@@ -42,7 +44,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'begin',
             'count',
-            'id_product',
+            [
+                'class' => DataColumn::className(), // this line is optional
+                'attribute' => 'id_product',
+                'label' => 'Tên thiết bị',
+                'value' => function($model){
+                    return Product::find()->where($model->id_product)->one()->name;
+                },
+            ],
             'created_at',
             'updated_at',
 
